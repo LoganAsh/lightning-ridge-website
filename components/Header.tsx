@@ -43,7 +43,7 @@ export function Header() {
           filled ? "opacity-0" : "opacity-100"
         }`}
       />
-      <div className="wrap relative flex h-20 items-center justify-between gap-6">
+      <div className="relative flex h-20 w-full items-center justify-between gap-6 px-5 sm:px-8 lg:px-12">
         <Link href="/" aria-label="Lightning Ridge Excavation home" className="shrink-0">
           <Image src="/logo-light.png" alt="Lightning Ridge Excavation" width={360} height={173} priority className="h-14 w-auto" />
         </Link>
@@ -82,7 +82,7 @@ export function Header() {
 
       {open && (
         <nav id="mobile-nav" aria-label="Mobile" className="relative border-t border-white/10 md:hidden">
-          <div className="wrap flex flex-col py-3">
+          <div className="flex flex-col px-5 py-3 sm:px-8">
             {nav.map((item) => (
               <Link
                 key={item.href}
