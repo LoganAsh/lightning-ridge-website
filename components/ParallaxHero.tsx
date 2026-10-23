@@ -1,36 +1,38 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { FAR_RIDGE, MID_RIDGE, FRONT_RIDGE } from "@/components/Ridges";
 
-// Layered parallax hero, adapted from Osmo's parallax scrolling component.
-// Layers further back travel further as you scroll, so the title sinks
-// behind the front ridge where the excavator arm is digging.
+// Layered parallax hero, based on Osmo's parallax component from 21st.dev.
+// Layers 1-2: the template's mountain photos. Layer 3: the trackhoe on its
+// dirt pile (sits in the fade to black). Layer 4: the see-through title on top.
+const MOUNTAINS_BACK =
+  "https://cdn.21st.dev/assets/mirror/a4/a43f4eae3459c461345ee676f12d6e1ddca65e8a5279a5af00d475b17ff83aea.webp";
+const MOUNTAINS_FRONT =
+  "https://cdn.21st.dev/assets/mirror/50/50ca6a0d36d2780bfcb469d6db7eaec0be7e0d2961ba69a63d2a1473b040338d.webp";
+
 const LAYERS = [
   { layer: "1", yPercent: 70 },
   { layer: "2", yPercent: 55 },
-  { layer: "3", yPercent: 40 },
-  { layer: "4", yPercent: 10 },
+  { layer: "3", yPercent: 40 }, // title
+  { layer: "4", yPercent: 10 }, // trackhoe
 ];
 
-const ridgeSvg = "absolute bottom-0 left-1/2 h-auto w-full min-w-[960px] -translate-x-1/2";
-
-export function ParallaxHero() {
-  const rootRef = useRef<HTMLElement>(null);
+export function ParallaxHero({ children }: { children?: React.ReactNode }) {
+  const rootRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const root = rootRef.current;
     if (!root || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     gsap.registerPlugin(ScrollTrigger);
 
-    // gsap.context scopes selectors to this hero and lets us revert only
-    // what this component created, leaving other ScrollTriggers alone.
+    // Scoped to this hero so cleanup never touches other ScrollTriggers.
     const ctx = gsap.context(() => {
+      const trigger = root.querySelector("[data-parallax-layers]");
+      if (!trigger) return;
       const tl = gsap.timeline({
-        scrollTrigger: { trigger: root, start: "top 80px", end: "bottom 80px", scrub: 0 },
+        scrollTrigger: { trigger, start: "0% 0%", end: "100% 0%", scrub: 0 },
       });
       LAYERS.forEach(({ layer, yPercent }) => {
         tl.to(`[data-parallax-layer="${layer}"]`, { yPercent, ease: "none" }, 0);
@@ -41,47 +43,31 @@ export function ParallaxHero() {
   }, []);
 
   return (
-    <section
-      ref={rootRef}
-      aria-labelledby="hero-title"
-      className="relative h-[calc(100svh-5rem)] min-h-[620px] max-h-[1000px] overflow-hidden bg-dusk"
-    >
-      <div data-parallax-layer="1" className="pointer-events-none absolute inset-0">
-        <svg aria-hidden="true" viewBox="0 0 1440 400" className={`${ridgeSvg} -translate-y-[18%]`}>
-          <path d={FAR_RIDGE} fill="#1F3556" />
-        </svg>
-      </div>
-
-      <div data-parallax-layer="2" className="pointer-events-none absolute inset-0">
-        <svg aria-hidden="true" viewBox="0 0 1440 400" className={`${ridgeSvg} -translate-y-[6%]`}>
-          <path d={MID_RIDGE} fill="#2E6FE6" />
-        </svg>
-      </div>
-
-      <div data-parallax-layer="3" className="absolute inset-x-0 top-[8%] sm:top-[9%]">
-        <div className="wrap text-center">
-          <h1 id="hero-title" className="text-white">
-            <span className="block text-[clamp(4rem,13vw,12rem)] leading-[0.82] tracking-[0.02em]">Lightning Ridge</span>
-            <span className="mt-3 block text-[clamp(1.5rem,3.4vw,3rem)] tracking-[0.42em] text-ridge-light">Excavation</span>
-          </h1>
-          <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-mist sm:text-xl">
-            We move the ground your project stands on, across the Salt Lake area and beyond.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <Link href="/contact" className="btn-primary">Request a bid</Link>
-            <Link href="/services" className="btn-ghost-light">See our services</Link>
+    <div className="parallax" ref={rootRef}>
+      <section className="parallax__header" aria-labelledby="hero-title">
+        <div className="parallax__visuals">
+          <div className="parallax__black-line-overflow" />
+          <div data-parallax-layers className="parallax__layers">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={MOUNTAINS_BACK} data-parallax-layer="1" alt="" className="parallax__layer-img" loading="eager" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={MOUNTAINS_FRONT} data-parallax-layer="2" alt="" className="parallax__layer-img" loading="eager" />
+            <div data-parallax-layer="4" className="parallax__layer-hoe">
+              <div className="hoe">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/hero/trackhoe.webp" alt="" width={2203} height={818} />
+              </div>
+            </div>
+            <div data-parallax-layer="3" className="parallax__layer-title">
+              <h1 id="hero-title" className="parallax__title">
+                Lightning Ridge<small>Excavation</small>
+              </h1>
+            </div>
           </div>
+          <div className="parallax__fade" />
         </div>
-      </div>
-
-      <div data-parallax-layer="4" className="pointer-events-none absolute inset-0">
-        <svg aria-hidden="true" viewBox="0 0 1440 400" className={ridgeSvg} style={{ overflow: "visible" }}>
-          <path d={FRONT_RIDGE} fill="#0E1621" />
-          <image href="/arm.svg" x="792" y="86" width="68" height="148" />
-        </svg>
-        {/* extends the front ridge past the hero's bottom edge as it drifts down */}
-        <div className="absolute inset-x-0 top-full h-[20%] bg-basin" />
-      </div>
-    </section>
+      </section>
+      {children && <section className="parallax__content">{children}</section>}
+    </div>
   );
 }

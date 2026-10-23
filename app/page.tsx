@@ -14,16 +14,14 @@ const steps = [
 export default function Home() {
   return (
     <>
-      <ParallaxHero />
-
-      <section className="bg-basin text-white">
-        <div className="wrap pb-24 pt-8">
+      <ParallaxHero>
+        <div className="wrap pb-24 pt-4">
           <p className="max-w-4xl font-display text-[clamp(1.75rem,3.4vw,2.75rem)] font-semibold uppercase leading-tight">
             Excavation, site wet utilities, earthwork, grading and concrete prep for general contractors, developers
             and builders across multiple Utah counties.
           </p>
         </div>
-      </section>
+      </ParallaxHero>
 
       <section className="bg-white">
         <div className="wrap py-28">
