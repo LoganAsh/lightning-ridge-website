@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { -webkit-font-smoothing: antialiased; }
+  body { @apply bg-white font-sans text-basin; }
+  h1, h2, h3 { @apply font-display font-bold uppercase; letter-spacing: 0.01em; }
+  :focus-visible { outline: 3px solid #2E6FE6; outline-offset: 3px; }
+}
+
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-site px-5 sm:px-8; }
+  .btn { @apply inline-flex min-h-[48px] items-center justify-center px-7 font-display text-lg font-bold uppercase tracking-[0.08em] transition-colors; }
+  .btn-primary { @apply btn bg-ridge text-white hover:bg-ridge-dark; }
+  .btn-ghost-light { @apply btn border-2 border-white/40 text-white hover:border-white; }
+  .btn-ghost-dark { @apply btn border-2 border-basin text-basin hover:bg-basin hover:text-white; }
+  .btn-white { @apply btn bg-white text-basin hover:bg-snow; }
+  .kicker { @apply mb-3 text-base font-semibold text-ridge; }
+  .h2 { @apply text-[clamp(2.5rem,5vw,4rem)] leading-[0.95]; }
+}
+
+/* Lenis smooth scroll */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
