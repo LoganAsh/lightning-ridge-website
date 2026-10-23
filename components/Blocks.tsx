@@ -4,7 +4,7 @@ import { StaticRidges } from "@/components/Ridges";
 export function PageHero({ kicker, title, intro }: { kicker: string; title: string; intro: string }) {
   return (
     <section className="relative overflow-hidden bg-dusk text-white">
-      <div className="wrap relative z-10 pb-44 pt-24">
+      <div className="wrap relative z-10 pb-44 pt-44">
         <p className="mb-4 text-lg font-semibold text-ridge-light">{kicker}</p>
         <h1 className="max-w-4xl text-[clamp(3rem,7vw,6rem)] leading-[0.92]">{title}</h1>
         <p className="mt-7 max-w-xl text-xl leading-relaxed text-mist">{intro}</p>
