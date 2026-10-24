@@ -2,14 +2,13 @@
 
 // Adapted from "Sign In Page" on 21st.dev.
 // Changes from the original: Next.js instead of react-router, the stock image
-// swapped for the site's own trackhoe and ridgeline art, LRE fonts and colors,
+// swapped for an Unsplash construction-worker photo, LRE fonts and colors,
 // labels tied to their inputs, and the sign-up / Google / GitHub options
 // removed (employees get accounts from the office). Sign-in is not wired up
 // yet: submitting shows a notice instead.
 import { useState } from "react";
 import Image from "next/image";
 import { Eye, EyeOff } from "lucide-react";
-import { StaticRidges } from "@/components/Ridges";
 import { site } from "@/lib/site";
 
 const field =
@@ -33,25 +32,25 @@ export function LoginPage() {
 
   return (
     <div className="flex min-h-[100svh] flex-col bg-white pt-20 lg:flex-row">
-      {/* Left panel: brand art */}
-      <div className="relative min-h-[260px] overflow-hidden bg-gradient-to-b from-dusk via-[#16294A] to-shale lg:min-h-0 lg:flex-1">
-        <div className="relative z-20 p-8 sm:p-12">
+      {/* Left panel: photo */}
+      <div className="relative min-h-[260px] overflow-hidden bg-dusk lg:min-h-0 lg:flex-1">
+        <Image
+          src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=1600&q=75"
+          alt="Construction worker in a hard hat and safety vest on a job site"
+          fill
+          priority
+          sizes="(min-width: 1024px) 50vw, 100vw"
+          className="object-cover object-center"
+        />
+        {/* keeps the heading readable over the photo */}
+        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-basin/85 via-basin/30 to-basin/10" />
+        <div className="relative z-10 p-8 sm:p-12">
           <p className="mb-3 text-lg font-semibold text-ridge-light">Lightning Ridge Excavation</p>
           <p className="max-w-md font-display text-[clamp(2.5rem,5vw,4.5rem)] font-bold uppercase leading-[0.92] text-white">Crew portal</p>
           <p className="mt-4 hidden max-w-sm text-lg leading-relaxed text-mist lg:block">
             Schedules, job files and paperwork for the Lightning Ridge team.
           </p>
         </div>
-        <StaticRidges className="absolute inset-x-0 bottom-0 z-0 h-1/2 w-full opacity-60" />
-        <Image
-          src="/hero/trackhoe.webp"
-          alt=""
-          width={2203}
-          height={818}
-          priority
-          sizes="(min-width: 1024px) 50vw, 100vw"
-          className="absolute bottom-0 left-1/2 z-10 h-auto w-[150%] max-w-none -translate-x-1/2 sm:w-[120%] lg:w-[135%]"
-        />
       </div>
 
       {/* Right panel: form */}
