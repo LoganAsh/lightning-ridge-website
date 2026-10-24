@@ -20,4 +20,5 @@ export const nav = [
   { href: "/services", label: "Services" },
   { href: "/portfolio", label: "Portfolio" },
   { href: "/contact", label: "Contact" },
+  { href: "/portal", label: "Employee portal" },
 ];

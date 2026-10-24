@@ -28,7 +28,8 @@ export function Header() {
   }, [pathname]);
 
   const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
-  const filled = solid || open;
+  // The portal page has a white panel under the header, so keep the bar solid there.
+  const filled = solid || open || pathname === "/portal";
 
   return (
     <header
@@ -48,7 +49,7 @@ export function Header() {
           <Image src="/logo-light.png" alt="Lightning Ridge Excavation" width={360} height={173} priority className="h-14 w-auto" />
         </Link>
 
-        <nav aria-label="Main" className="hidden items-center gap-1 md:flex">
+        <nav aria-label="Main" className="hidden items-center gap-1 lg:flex">
           {nav.map((item) => (
             <Link
               key={item.href}
@@ -68,7 +69,7 @@ export function Header() {
 
         <button
           type="button"
-          className="flex h-12 w-12 items-center justify-center text-white md:hidden"
+          className="flex h-12 w-12 items-center justify-center text-white lg:hidden"
           aria-expanded={open}
           aria-controls="mobile-nav"
           aria-label={open ? "Close menu" : "Open menu"}
@@ -81,7 +82,7 @@ export function Header() {
       </div>
 
       {open && (
-        <nav id="mobile-nav" aria-label="Mobile" className="relative border-t border-white/10 md:hidden">
+        <nav id="mobile-nav" aria-label="Mobile" className="relative border-t border-white/10 lg:hidden">
           <div className="flex flex-col px-5 py-3 sm:px-8">
             {nav.map((item) => (
               <Link
