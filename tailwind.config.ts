@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import containerQueries from "@tailwindcss/container-queries";
 
 const config: Config = {
   content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
@@ -14,6 +15,10 @@ const config: Config = {
         mist: "#C9D3E0",
         rock: "#4A5566",
         line: "#E3E7ED",
+        // shadcn-style tokens used by components in components/ui, mapped to the site palette
+        background: "#FFFFFF",
+        foreground: "#0E1621",
+        muted: { DEFAULT: "#E3E7ED", foreground: "#4A5566" },
       },
       fontFamily: {
         display: ['"Barlow Condensed"', "Arial Narrow", "sans-serif"],
@@ -22,6 +27,6 @@ const config: Config = {
       maxWidth: { site: "80rem" },
     },
   },
-  plugins: [],
+  plugins: [containerQueries],
 };
 export default config;

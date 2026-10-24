@@ -10,13 +10,16 @@
   "dependencies": {
     "@fontsource/barlow": "5.1.0",
     "@fontsource/barlow-condensed": "5.1.0",
+    "clsx": "2.1.1",
     "gsap": "3.12.5",
     "lenis": "1.1.13",
     "next": "14.2.15",
     "react": "18.3.1",
-    "react-dom": "18.3.1"
+    "react-dom": "18.3.1",
+    "tailwind-merge": "2.5.4"
   },
   "devDependencies": {
+    "@tailwindcss/container-queries": "0.1.1",
     "@types/node": "20.16.11",
     "@types/react": "18.3.11",
     "@types/react-dom": "18.3.1",
