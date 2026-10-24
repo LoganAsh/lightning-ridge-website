@@ -1,8 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    // Stock photos served from Unsplash (used on the Employee portal).
-    remotePatterns: [{ protocol: "https", hostname: "images.unsplash.com" }],
+    // Free stock photos (Unsplash on Services, Pexels on the Employee portal).
+    remotePatterns: [
+      { protocol: "https", hostname: "images.unsplash.com" },
+      { protocol: "https", hostname: "images.pexels.com" },
+    ],
   },
 };
 export default nextConfig;
