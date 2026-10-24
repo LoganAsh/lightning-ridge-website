@@ -2,7 +2,7 @@
 
 // Adapted from "Sign In Page" on 21st.dev.
 // Changes from the original: Next.js instead of react-router, the stock image
-// swapped for a Pexels photo of pipe work in a trench, LRE fonts and colors,
+// swapped for a Pexels photo of a worker digging a trench, LRE fonts and colors,
 // labels tied to their inputs, and the sign-up / Google / GitHub options
 // removed (employees get accounts from the office). Sign-in is not wired up
 // yet: submitting shows a notice instead.
@@ -35,8 +35,8 @@ export function LoginPage() {
       {/* Left panel: photo */}
       <div className="relative min-h-[260px] overflow-hidden bg-dusk lg:min-h-0 lg:flex-1">
         <Image
-          src="https://images.pexels.com/photos/27354191/pexels-photo-27354191.jpeg?auto=compress&cs=tinysrgb&w=1600"
-          alt="Worker welding pipe in an open utility trench"
+          src="https://images.pexels.com/photos/13791255/pexels-photo-13791255.jpeg?auto=compress&cs=tinysrgb&w=1600"
+          alt="Construction worker in a hard hat digging a trench with a shovel"
           fill
           priority
           sizes="(min-width: 1024px) 50vw, 100vw"
