@@ -36,7 +36,7 @@ export function LoginPage() {
       <div className="relative min-h-[260px] overflow-hidden bg-dusk lg:min-h-0 lg:flex-1">
         <Image
           src="https://images.pexels.com/photos/27354191/pexels-photo-27354191.jpeg?auto=compress&cs=tinysrgb&w=1600"
-          alt="Worker joining pipe in an open utility trench"
+          alt="Worker welding pipe in an open utility trench"
           fill
           priority
           sizes="(min-width: 1024px) 50vw, 100vw"
