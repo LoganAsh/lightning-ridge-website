@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { CtaBand, PageHero } from "@/components/Blocks";
 import { ServiceIcon } from "@/components/Icons";
+import { ColorChangeCards, type ColorChangeCardData } from "@/components/ui/color-change-card";
 import { services } from "@/lib/services";
 
 export const metadata: Metadata = { title: "Services" };
@@ -10,6 +11,16 @@ const projectTypes = [
   { title: "Residential", text: "Subdivisions, multifamily and custom homes." },
   { title: "Industrial", text: "Warehouse, yard and heavy-use pads." },
   { title: "Municipal", text: "Public utility and infrastructure work." },
+];
+
+const cards: ColorChangeCardData[] = [
+  ...services.map((s) => ({ heading: s.name, description: s.summary, imgSrc: s.image, href: `#${s.id}` })),
+  {
+    heading: "Full site package",
+    description: "All of it under one contract, so the dirt, the pipe and the prep stay on one schedule.",
+    imgSrc: "https://images.unsplash.com/photo-1649807479468-40011b31ee09?auto=format&fit=crop&w=1200&q=70",
+    href: "/contact",
+  },
 ];
 
 export default function Services() {
@@ -22,7 +33,16 @@ export default function Services() {
       />
 
       <section className="bg-white">
+        <div className="wrap pb-8 pt-24">
+          <p className="kicker">What we do</p>
+          <h2 className="h2 mb-12">Pick your scope</h2>
+          <ColorChangeCards cards={cards} />
+        </div>
+      </section>
+
+      <section className="bg-white">
         <div className="wrap py-20">
+          <p className="kicker">What’s included</p>
           {services.map((s, i) => (
             <article
               key={s.id}

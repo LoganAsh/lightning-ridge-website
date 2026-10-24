@@ -7,9 +7,12 @@ export const services: {
   summary: string;
   detail: string;
   scope: string[];
+  /** Stock photo (Unsplash) for the Services page card. Swap for a real job photo in /public/photos when you have one. */
+  image: string;
 }[] = [
   {
     id: "excavation",
+    image: "https://images.unsplash.com/photo-1764422743505-97c9ea0e43f2?auto=format&fit=crop&w=1200&q=70",
     name: "Excavation",
     icon: "excavation",
     summary: "Mass and structural excavation, basements, footings and over-excavation to spec.",
@@ -19,6 +22,7 @@ export const services: {
   },
   {
     id: "utilities",
+    image: "https://images.unsplash.com/photo-1780054984791-ef3f58ca753e?auto=format&fit=crop&w=1200&q=70",
     name: "Site wet utilities",
     icon: "utilities",
     summary: "Water, sanitary sewer and storm drain installed, tested and ready for inspection.",
@@ -28,6 +32,7 @@ export const services: {
   },
   {
     id: "earthwork",
+    image: "https://images.unsplash.com/photo-1649829726631-fcd218631ab5?auto=format&fit=crop&w=1200&q=70",
     name: "Earthwork",
     icon: "earthwork",
     summary: "Cut and fill, import and export, compaction and site balancing.",
@@ -37,6 +42,7 @@ export const services: {
   },
   {
     id: "grading",
+    image: "https://images.unsplash.com/photo-1652303713917-2666b8bee507?auto=format&fit=crop&w=1200&q=70",
     name: "Grading",
     icon: "grading",
     summary: "Rough and finish grading to plan elevations, drainage and pad tolerances.",
@@ -45,6 +51,7 @@ export const services: {
   },
   {
     id: "concrete-prep",
+    image: "https://images.unsplash.com/photo-1768677903496-becc4be07258?auto=format&fit=crop&w=1200&q=70",
     name: "Concrete prep",
     icon: "concrete",
     summary: "Subgrade, base and fine grade so flatwork and foundations go in clean.",
